@@ -53,46 +53,75 @@ function bot(data,socket,questionNum) {
   if (questionNum == 0) {
   answer= 'Hello ' + input + ' :-)';// output response
   waitTime =2000;
-  question = 'How old are you?';			    	// load next question
+  question = 'Did you feel good today?';			    	// load next question
   }
   else if (questionNum == 1) {
-  answer= 'Really ' + input + ' Years old? So that means you where born in: ' + (2018-parseInt(input));// output response
-  waitTime =2000;
-  question = 'Where do you live?';			    	// load next question
-  }
-  else if (questionNum == 2) {
-  answer= ' Cool! I have never been to ' + input+'.';
-  waitTime =2000;
-  question = 'Whats your favorite Color?';			    	// load next question
-  }
-  else if (questionNum == 3) {
-  answer= 'Ok, ' + input+' it is.';
-  socket.emit('changeBG',input.toLowerCase());
-  waitTime = 2000;
-  question = 'Can you still read the font?';			    	// load next question
-  }
-  else if (questionNum == 4) {
     if(input.toLowerCase()==='yes'|| input===1){
-      answer = 'Perfect!';
+      answer = 'That is awesome! I had a really nice day today too.';
       waitTime =2000;
-      question = 'Whats your favorite place?';
+      question = 'What did you do today?';
     }
     else if(input.toLowerCase()==='no'|| input===0){
-        socket.emit('changeFont','white'); /// we really should look up the inverse of what we said befor.
-        answer=''
-        question='How about now?';
-        waitTime =0;
-        questionNum--; // Here we go back in the question number this can end up in a loop
-    }else{
-      answer=' I did not understand you. Can you please answer with simply with yes or no.'
-      question='';
-      questionNum--;
-      waitTime =0;
+    answer = 'I am sorry to hear that!';
+    waitTime =2000;
+    question = 'What happened?';
+    questionNum = 3;
     }
-  // load next question
+    else{
+      answer=' I did not understand you. Can you please answer with simply with \'yes\' or \'no?\''
+      waitTime =2000;
+      question = 'Did you feel good today?';
+      questionNum--;
+    }
   }
+  else if (questionNum == 2) {
+        answer = input + ' sounds fun! Well I had a great meal today, and that made my day :)';
+        waitTime =2000;
+        question = 'What else makes you happy?';
+  }
+  else if (questionNum == 3) {
+    answer = input + ' makes me happy too! I am glad we share the same interest.';
+    waitTime =3000;
+    question = 'Who is the person who inspires you the most?';
+    questionNum = 5
+  }
+  else if (questionNum == 4) {
+    answer = 'I am sure things will work out!';
+    waitTime =2000;
+    question = 'Let us talk about happier things! What made you happy the past few days?';
+  }
+  else if (questionNum == 5) {
+    answer = input + ' makes me happy too! I am glad we share the same interest.';
+    waitTime =5000;
+    question = 'Who is the person who inspires you the most?';
+  }
+
+  else if (questionNum == 6) {
+      answer = 'Wow I am glad that ' + input + ' made a difference in your life! My sisters have always been mentors in my life.';
+      waitTime =5000;
+      question = 'Do you have any siblings?';
+  }
+  else if (questionNum == 7) {
+    if(input.toLowerCase()==='yes'|| input===1){
+      answer = 'Yay! Me too. Tell them a chatbot says hi!';
+      question = 'Did you enjoy this conversation?';
+      waitTime =2000;
+    }
+    else if(input.toLowerCase()==='no'|| input===0){
+      answer = 'Oh, so you are an only child!';
+      question = 'Did you enjoy this conversation?';
+      waitTime =2000;
+    }
+    else{
+      answer=' I did not understand you. Can you please answer with simply with yes or no.'
+      question='Do you have any siblings?';
+      questionNum--;
+      waitTime =2000;
+    }
+  }
+  // load next question
   else{
-    answer= 'I have nothing more to say!';// output response
+    answer= 'Sure. Well, I had so much fun talking to you! Hope to see you soon :)';// output response
     waitTime =0;
     question = '';
   }
